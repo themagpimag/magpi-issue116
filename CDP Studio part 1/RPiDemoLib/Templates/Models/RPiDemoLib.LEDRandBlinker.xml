@@ -1,0 +1,26 @@
+<Model Name="RPiDemoLib.LEDRandBlinker">
+  <BaseModel>CDPComponent</BaseModel>
+  <ModelTypeClass>XML</ModelTypeClass>
+
+  <Attributes>
+    <Attribute Name="Model" Value="RPiDemoLib.LEDRandBlinker"></Attribute>
+  </Attributes>
+  <Element Description="The Frequency [Hz] that the component statemachine is run at." DisplayHint="Important" Model="PropertyAsElement" Name="fs" Required="1" Type="double" Unit="Hz" Value="2"></Element>
+
+  <Ports>
+    <Port Model="CDPPort" Name="LEDRand" Input="0">
+
+      <Connections>
+        <Connection Model="PullConnection" Name="LED1" RoutingType="Pull" LocalName="..RAND1.Out"></Connection>
+        <Connection Model="PullConnection" Name="LED2" RoutingType="Pull" LocalName="..RAND2.Out"></Connection>
+        <Connection Model="PullConnection" Name="LED3" RoutingType="Pull" LocalName="..RAND3.Out"></Connection>
+      </Connections></Port></Ports>
+  
+
+  <Subcomponents>
+    <Subcomponent Model="RPiDemoLib.LEDRandBlinker.RAND1" Name="RPiDemoLib.LEDRandBlinker.RAND1" src="RPiDemoLib.LEDRandBlinker.RAND1.xml"></Subcomponent>
+    <Subcomponent Model="RPiDemoLib.LEDRandBlinker.RAND2" Name="RPiDemoLib.LEDRandBlinker.RAND2" src="RPiDemoLib.LEDRandBlinker.RAND2.xml"></Subcomponent>
+    <Subcomponent Model="RPiDemoLib.LEDRandBlinker.RAND3" Name="RPiDemoLib.LEDRandBlinker.RAND3" src="RPiDemoLib.LEDRandBlinker.RAND3.xml"></Subcomponent></Subcomponents>
+  
+
+</Model>

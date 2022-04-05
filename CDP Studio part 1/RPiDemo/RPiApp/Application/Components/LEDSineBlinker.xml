@@ -1,0 +1,25 @@
+<Component Model='RPiDemoLib.LEDSineBlinker' Name='LEDSineBlinker' src='Components/LEDSineBlinker.xml' Description="Controls 3 LEDs in LEDPort in sine pattern">
+  <SchedulingOrder>TopDown</SchedulingOrder>
+  <SchedulingGroup>Default</SchedulingGroup>
+  <fs>6</fs>
+  <Status>0</Status>
+
+  <Signals>
+    <Signal Description="Process run time each s." Input="0" Model="CDPSignal&lt;double&gt;" Name="Process Timer" Type="double" Unit="s/s"></Signal>
+    <Signal Description="Process interval [s]." Input="0" Model="CDPSignal&lt;double&gt;" Name="Process Period" Type="double" Unit="s"></Signal>
+  </Signals>
+
+  <Alarms>
+    <Alarm Description="A component was suspended!" Name="Component Suspended" Text="Component was suspended!"></Alarm>
+  </Alarms>
+
+  <Ports>
+    <Port Input="0" Model="RPiDemoLib.LEDPort" Name="LEDSine">
+
+      <Connections>
+        <Connection Input="1" LocalName=".LED1" Model="CDPPortConnection" Name="MapLED1"></Connection>
+        <Connection Input="1" LocalName=".LED2" Model="CDPPortConnection" Name="MapLED2"></Connection>
+        <Connection Input="1" LocalName=".LED3" Model="CDPPortConnection" Name="MapLED3"></Connection>
+      </Connections></Port>
+  </Ports>
+</Component>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Model Name="RPiDemoLib.LEDPort">
+ <ModelTypeClass>C++</ModelTypeClass>
+ <BaseModel>CDPPort</BaseModel>
+ <Attributes>
+  <Attribute Value="Port for 3 LEDs" Type="string" Name="Description"/>
+  <Attribute SaveOnChange="0" ReadOnly="1" Description="Implementation model used." Value="RPiDemoLib.LEDPort" Type="string" Required="1" Name="Model"/>
+  <Attribute SaveOnChange="0" Description="" RouteMethod="RoutePeriodic" LogEventOnChange="0" Type="bool" Name="LED1"/>
+  <Attribute SaveOnChange="0" LogEventOnChange="0" RouteMethod="RoutePeriodic" Type="bool" Name="LED2"/>
+  <Attribute SaveOnChange="0" LogEventOnChange="0" RouteMethod="RoutePeriodic" Type="bool" Name="LED3"/>
+ </Attributes>
+ <Connections>
+  <Connection Input="1" LocalName=".LED1" Model="CDPPortConnection" Name="MapLED1"/>
+  <Connection Input="1" LocalName=".LED2" Name="MapLED2" Model="CDPPortConnection"/>
+  <Connection Input="1" LocalName=".LED3" Name="MapLED3" Model="CDPPortConnection"/>
+ </Connections>
+</Model>

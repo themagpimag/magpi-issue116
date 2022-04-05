@@ -1,0 +1,12 @@
+<Library Name="RPiDemoLib">
+ <Models>
+  <Model Name="RPiDemoLib.LEDPort"/>
+  <Model Name="RPiDemoLib.LEDRandBlinker">
+   <Model Name="RPiDemoLib.LEDRandBlinker.RAND1"/>
+   <Model Name="RPiDemoLib.LEDRandBlinker.RAND2"/>
+   <Model Name="RPiDemoLib.LEDRandBlinker.RAND3"/>
+  </Model>
+  <Model Name="RPiDemoLib.LEDScanBlinker"/>
+  <Model Name="RPiDemoLib.LEDSineBlinker"/>
+ </Models>
+</Library>

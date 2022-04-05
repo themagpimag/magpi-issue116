@@ -1,0 +1,54 @@
+<Component Model='RPiDemoLib.LEDScanBlinker' Name='LEDScanBlinker' src='Components/LEDScanBlinker.xml' Description="CDPComponent is an instance of a CDP component model, instantiated using the specification in the component configuration xml file. Components communicate by exchanging Messages, Signal- and Property-values, both inside applications and between applications.">
+  <SchedulingOrder>TopDown</SchedulingOrder>
+  <SchedulingGroup>Default</SchedulingGroup>
+  <fs>6</fs>
+  <Status>0</Status>
+
+  <Signals>
+    <Signal Description="Process run time each s." Input="0" Model="CDPSignal&lt;double&gt;" Name="Process Timer" Type="double" Unit="s/s"></Signal>
+    <Signal Description="Process interval [s]." Input="0" Model="CDPSignal&lt;double&gt;" Name="Process Period" Type="double" Unit="s"></Signal>
+    <Signal Input="1" Model="CDPSignal&lt;unsigned char&gt;" Name="Count" Routing=".MUX.Out" Type="unsigned char" Value="1"></Signal>
+  </Signals>
+
+  <Alarms>
+    <Alarm Description="A component was suspended!" Name="Component Suspended" Text="Component was suspended!"></Alarm>
+  </Alarms>
+
+  <Ports>
+    <Port Input="0" Model="CDPPort" Name="LEDScan">
+
+      <Connections>
+        <Connection Input="0" LocalName="..BitExtract1.Out" Model="PullConnection" Name="LED1"></Connection>
+        <Connection Input="0" LocalName="..BitExtract2.Out" Model="PullConnection" Name="LED2"></Connection>
+        <Connection Input="0" LocalName="..BitExtract3.Out" Model="PullConnection" Name="LED3"></Connection>
+      </Connections></Port>
+  </Ports>
+
+  <Subcomponents>
+    <Operator Model="Automation.LeftShiftOperator&lt;unsigned char&gt;" Name="ShiftLeft" Type="unsigned char">
+      <Argument CppName="m_output" Description="Default output argument" Input="0" Model="DefaultArgument&lt;unsigned char&gt;" Name="Out" Routing="" Type="unsigned char" Value="1"></Argument>
+      <Argument CppName="m_input" Description="Default input argument" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="In" Routing="..Count" Type="unsigned char" Value="1"></Argument>
+      <Argument CppName="" Description="Number of bits to shift" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="Shift" Routing="" Type="unsigned char" Value="1"></Argument></Operator>
+    <Operator Model="Automation.GTOperator&lt;unsigned char&gt;" Name="GT" Type="unsigned char">
+      <Argument CppName="m_input" Description="Argument 1" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="In1" Routing="..ShiftLeft.Out" Type="unsigned char" Value="0"></Argument>
+      <Argument CppName="m_output" Description="Result" Input="0" Model="DefaultArgument&lt;unsigned char&gt;" Name="Out" Routing="" Type="unsigned char" Value="1"></Argument>
+      <Argument CppName="" Description="Argument 2" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="In2" Routing="" Type="unsigned char" Value="4"></Argument></Operator>
+    <Operator Model="Automation.MUXOperator&lt;unsigned char&gt;" Name="MUX" Type="unsigned char">
+      <Argument CppName="m_output" Description="Default output argument" Input="0" Model="DefaultArgument&lt;unsigned char&gt;" Name="Out" Routing="" Type="unsigned char" Value="1"></Argument>
+      <Argument CppName="" Description="0-based index to select which of the arguments to use. Index 0 is the default input value; any other Index value chooses between the arguments in the operator. If index is larger than the allowed range (number of arguments), then the Index will be limited (to number of arguments)." Input="1" Model="DefaultArgument&lt;unsigned int&gt;" Name="Index" Routing="..GT.Out" Type="unsigned int" Value="0"></Argument>
+      <Argument CppName="m_input" Description="Default input argument corresponding Index 0" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="In0" Routing="..ShiftLeft.Out" Type="unsigned char" Value="1"></Argument>
+      <Argument CppName="" Description="Input argument corresponding Index 1" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="In1" Routing="" Type="unsigned char" Value="1"></Argument></Operator>
+    <Operator Model="Automation.BitExtractOperator&lt;unsigned char&gt;" Name="BitExtract1" Type="unsigned char">
+      <Argument CppName="m_output" Description="True if extracted bit from default input is high" Input="0" Model="DefaultArgument&lt;bool&gt;" Name="Out" Routing="" Type="bool" Value="0"></Argument>
+      <Argument CppName="m_input" Description="Default input to extract bit from using BitNo" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="Source" Routing="..MUX.Out" Type="unsigned char" Value="0"></Argument>
+      <Argument CppName="" Description="Showing which bit to extract from source." Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="BitNo" Routing="" Type="unsigned char" Value="0"></Argument></Operator>
+    <Operator Model="Automation.BitExtractOperator&lt;unsigned char&gt;" Name="BitExtract2" Type="unsigned char">
+      <Argument CppName="m_output" Description="True if extracted bit from default input is high" Input="0" Model="DefaultArgument&lt;bool&gt;" Name="Out" Routing="" Type="bool" Value="0"></Argument>
+      <Argument CppName="m_input" Description="Default input to extract bit from using BitNo" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="Source" Routing="..MUX.Out" Type="unsigned char" Value="0"></Argument>
+      <Argument CppName="" Description="Showing which bit to extract from source." Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="BitNo" Routing="" Type="unsigned char" Value="1"></Argument></Operator>
+    <Operator Model="Automation.BitExtractOperator&lt;unsigned char&gt;" Name="BitExtract3" Type="unsigned char">
+      <Argument CppName="m_output" Description="True if extracted bit from default input is high" Input="0" Model="DefaultArgument&lt;bool&gt;" Name="Out" Routing="" Type="bool" Value="0"></Argument>
+      <Argument CppName="m_input" Description="Default input to extract bit from using BitNo" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="Source" Routing="..MUX.Out" Type="unsigned char" Value="0"></Argument>
+      <Argument CppName="" Description="Showing which bit to extract from source." Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="BitNo" Routing="" Type="unsigned char" Value="2"></Argument></Operator>
+  </Subcomponents>
+</Component>

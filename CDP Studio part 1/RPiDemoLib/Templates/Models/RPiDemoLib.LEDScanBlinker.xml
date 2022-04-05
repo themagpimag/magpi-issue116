@@ -1,0 +1,32 @@
+<Model Name="RPiDemoLib.LEDScanBlinker">
+  <BaseModel>CDPComponent</BaseModel>
+  <ModelTypeClass>XML</ModelTypeClass>
+
+  <Attributes>
+    <Attribute Name="Model" Value="RPiDemoLib.LEDScanBlinker"></Attribute>
+  </Attributes>
+
+  <Signals>
+
+    <Signal Name="Count" Model="CDPSignal&lt;unsigned char&gt;" Routing=".MUX.Out" InputOutputHint="PRV"></Signal>
+    
+  </Signals>
+
+  <Subcomponents>
+
+    <Operator Name="ShiftLeft" Model="Automation.LeftShiftOperator&lt;unsigned char&gt;">
+      <Argument Model="DefaultArgument&lt;unsigned char&gt;" Name="Out" Value="1"></Argument>
+      <Argument Model="DefaultArgument&lt;unsigned char&gt;" Name="In" Routing="..Count" Value="1"></Argument>
+    </Operator>
+
+    <Operator Name="GT" Model="Automation.GTOperator&lt;unsigned char&gt;">
+      <Argument Model="DefaultArgument&lt;unsigned char&gt;" Name="Out" Value="1"></Argument>
+    </Operator>
+
+    <Operator Name="MUX" Model="Automation.MUXOperator&lt;unsigned char&gt;">
+      <Argument Model="DefaultArgument&lt;unsigned char&gt;" Name="Out" Value="1"></Argument>
+      <Argument Model="DefaultArgument&lt;unsigned char&gt;" Name="In0" Routing="..ShiftLeft.Out" Value="1"></Argument>
+    </Operator>
+  </Subcomponents>
+
+</Model>

@@ -1,0 +1,31 @@
+<Component Model='RPiDemoLib.LEDRandBlinker' Name='LEDRandBlinker' src='Components/LEDRandBlinker.xml' Description="CDPComponent is an instance of a CDP component model, instantiated using the specification in the component configuration xml file. Components communicate by exchanging Messages, Signal- and Property-values, both inside applications and between applications.">
+  <SchedulingOrder>TopDown</SchedulingOrder>
+  <SchedulingGroup>Default</SchedulingGroup>
+  <fs>2</fs>
+  <Status>0</Status>
+
+  <Signals>
+    <Signal Description="Process run time each s." Input="0" Model="CDPSignal&lt;double&gt;" Name="Process Timer" Type="double" Unit="s/s"></Signal>
+    <Signal Description="Process interval [s]." Input="0" Model="CDPSignal&lt;double&gt;" Name="Process Period" Type="double" Unit="s"></Signal>
+  </Signals>
+
+  <Alarms>
+    <Alarm Description="A component was suspended!" Name="Component Suspended" Text="Component was suspended!"></Alarm>
+  </Alarms>
+
+  <Ports>
+    <Port Input="0" Model="CDPPort" Name="LEDRand">
+
+      <Connections>
+        <Connection Input="0" LocalName="..RAND1.Out" Model="PullConnection" Name="LED1"></Connection>
+        <Connection Input="0" LocalName="..RAND2.Out" Model="PullConnection" Name="LED2"></Connection>
+        <Connection Input="0" LocalName="..RAND3.Out" Model="PullConnection" Name="LED3"></Connection>
+      </Connections></Port>
+  </Ports>
+
+  <Subcomponents>
+    <Subcomponent Model="CDPComponent" Name="RAND1" src="Components/LEDRandBlinker/RAND1.xml"></Subcomponent>
+    <Subcomponent Model="CDPComponent" Name="RAND2" src="Components/LEDRandBlinker/RAND2.xml"></Subcomponent>
+    <Subcomponent Model="CDPComponent" Name="RAND3" src="Components/LEDRandBlinker/RAND3.xml"></Subcomponent>
+  </Subcomponents>
+</Component>

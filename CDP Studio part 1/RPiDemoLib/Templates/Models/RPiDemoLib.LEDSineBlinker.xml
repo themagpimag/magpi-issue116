@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Model Name="RPiDemoLib.LEDSineBlinker">
+ <ModelTypeClass>C++</ModelTypeClass>
+ <BaseModel>CDPComponent</BaseModel>
+ <Element Value="normal" Name="Priority"/>
+ <Element Value="2" Name="fs"/>
+ <Attributes>
+  <Attribute Value="Controls 3 LEDs in LEDPort in sine pattern" Type="string" Name="Description"/>
+  <Attribute SaveOnChange="0" ReadOnly="1" Description="Implementation model used." Value="RPiDemoLib.LEDSineBlinker" Type="string" Required="1" Name="Model"/>
+ </Attributes>
+ <Ports>
+  <Port Name="LEDSine" Model="RPiDemoLib.LEDPort"/>
+ </Ports>
+</Model>

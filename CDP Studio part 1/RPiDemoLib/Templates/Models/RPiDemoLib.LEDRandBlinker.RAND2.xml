@@ -1,0 +1,20 @@
+<Model Name="RPiDemoLib.LEDRandBlinker.RAND2">
+  <BaseModel>CDPComponent</BaseModel>
+  <ModelTypeClass>XML</ModelTypeClass>
+
+  <Attributes>
+    <Attribute Name="Model" Value="RPiDemoLib.LEDRandBlinker.RAND2"></Attribute>
+  </Attributes>
+  <Element Description="The Frequency [Hz] that the component statemachine is run at." DisplayHint="Important" Model="PropertyAsElement" Name="fs" Required="1" Type="double" Unit="Hz" Value="2.5"></Element>
+  <Element Description="Name of a the scheduling group that this component runs in. Components with the same priority and scheduling group run in the same thread." DisplayHint="Important" Model="PropertyAsElement" Name="SchedulingGroup" Required="1" Value="RND2"></Element>
+
+  <Signals>
+    <Signal Model="CDPSignal&lt;bool&gt;" Name="Out" Routing=".AddRandom.Out"></Signal>
+  </Signals>
+
+  <Subcomponents>
+    <Operator Model="Automation.AddRandom&lt;unsigned char&gt;" Name="AddRandom">
+      <Argument Model="DefaultArgument&lt;unsigned char&gt;" Name="Upper" Value="2"></Argument></Operator>
+  </Subcomponents>
+
+</Model>

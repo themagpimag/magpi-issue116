@@ -1,0 +1,24 @@
+<Component Model='CDPComponent' Name='RAND1' src='Components/LEDRandBlinker/RAND1.xml' Description="CDPComponent is an instance of a CDP component model, instantiated using the specification in the component configuration xml file. Components communicate by exchanging Messages, Signal- and Property-values, both inside applications and between applications.">
+  <SchedulingOrder>TopDown</SchedulingOrder>
+  <SchedulingGroup>RND1</SchedulingGroup>
+  <fs>2</fs>
+  <Status>0</Status>
+
+  <Signals>
+    <Signal Description="Process run time each s." Input="0" Model="CDPSignal&lt;double&gt;" Name="Process Timer" Type="double" Unit="s/s"></Signal>
+    <Signal Description="Process interval [s]." Input="0" Model="CDPSignal&lt;double&gt;" Name="Process Period" Type="double" Unit="s"></Signal>
+    <Signal Input="0" Model="CDPSignal&lt;bool&gt;" Name="Out" Type="bool" Routing=".AddRandom.Out"></Signal>
+  </Signals>
+
+  <Alarms>
+    <Alarm Description="A component was suspended!" Name="Component Suspended" Text="Component was suspended!"></Alarm>
+  </Alarms>
+
+  <Subcomponents>
+    <Operator Model="Automation.AddRandom&lt;unsigned char&gt;" Name="AddRandom" Type="unsigned char">
+      <Argument CppName="m_output" Description="Default output argument" Input="0" Model="DefaultArgument&lt;unsigned char&gt;" Name="Out" Routing="" Type="unsigned char" Value="0"></Argument>
+      <Argument CppName="m_input" Description="Default input argument" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="In" Routing="" Type="unsigned char" Value="0"></Argument>
+      <Argument CppName="" Description="Random generator lower limit" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="Lower" Routing="" Type="unsigned char" Value="0"></Argument>
+      <Argument CppName="" Description="Random generator upper limit" Input="1" Model="DefaultArgument&lt;unsigned char&gt;" Name="Upper" Routing="" Type="unsigned char" Value="2"></Argument></Operator>
+  </Subcomponents>
+</Component>
